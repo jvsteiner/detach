@@ -221,6 +221,45 @@ class AttachmentScanner: ObservableObject {
     attachments.reduce(0) { $0 + $1.size }
   }
   
+  func copyAttachments(_ attachments: [AttachmentItem], to destinationURL: URL) -> (success: Int, failed: Int) {
+    let fileManager = FileManager.default
+    var successCount = 0
+    var failedCount = 0
+    
+    for attachment in attachments {
+      do {
+        let sourceURL = URL(filePath: attachment.path)
+        let destinationFolderURL = destinationURL.appendingPathComponent(sourceURL.lastPathComponent)
+        
+        // Check if destination already exists
+        var isDirectory: ObjCBool = false
+        if fileManager.fileExists(atPath: destinationFolderURL.path, isDirectory: &isDirectory) {
+          // If it exists, create a unique name
+          var counter = 1
+          var uniqueURL = destinationURL.appendingPathComponent("\(sourceURL.lastPathComponent)_\(counter)")
+          
+          while fileManager.fileExists(atPath: uniqueURL.path) {
+            counter += 1
+            uniqueURL = destinationURL.appendingPathComponent("\(sourceURL.lastPathComponent)_\(counter)")
+          }
+          
+          try fileManager.copyItem(at: sourceURL, to: uniqueURL)
+          print("📁 Copied folder to: \(uniqueURL.path)")
+        } else {
+          try fileManager.copyItem(at: sourceURL, to: destinationFolderURL)
+          print("📁 Copied folder to: \(destinationFolderURL.path)")
+        }
+        
+        successCount += 1
+      } catch {
+        print("❌ Failed to copy folder: \(attachment.path) - \(error)")
+        failedCount += 1
+      }
+    }
+    
+    return (successCount, failedCount)
+  }
+  
   @MainActor
   private func showPermissionAlert() {
     let alert = NSAlert()

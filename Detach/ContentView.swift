@@ -7,6 +7,8 @@ struct ContentView: View {
   @State private var selectedFileType: FileTypeCategory = .all
   @State private var selectedAttachments: Set<AttachmentItem> = []
   @State private var showingDeleteConfirmation = false
+  @State private var showingCopyConfirmation = false
+  @State private var selectedDestinationURL: URL?
   
   // Custom filter inputs
   @State private var customTimeframeValue: String = "3"
@@ -233,6 +235,11 @@ struct ContentView: View {
             }
             .buttonStyle(.bordered)
             
+            Button("Copy to Folder") {
+              showFolderPicker()
+            }
+            .buttonStyle(.bordered)
+            
             Button("Move to Trash") {
               showingDeleteConfirmation = true
             }
@@ -264,6 +271,47 @@ struct ContentView: View {
       Button("Cancel", role: .cancel) { }
     } message: {
       Text("This will free up \(ByteCountFormatter.string(fromByteCount: totalSelectedSize, countStyle: .file)) of disk space. Attachments can be restored from Trash.")
+    }
+    .confirmationDialog(
+      "Copy \(selectedAttachments.count) attachments to selected folder?",
+      isPresented: $showingCopyConfirmation,
+      titleVisibility: .visible
+    ) {
+      Button("Copy to Folder") {
+        if let destinationURL = selectedDestinationURL {
+          let result = scanner.copyAttachments(Array(selectedAttachments), to: destinationURL)
+          selectedAttachments.removeAll()
+          selectedDestinationURL = nil
+          
+          // Could show an alert with results here
+          print("Copied: \(result.success), Failed: \(result.failed)")
+        }
+      }
+      
+      Button("Cancel", role: .cancel) { 
+        selectedDestinationURL = nil
+      }
+    } message: {
+      if let destinationURL = selectedDestinationURL {
+        Text("This will copy \(ByteCountFormatter.string(fromByteCount: totalSelectedSize, countStyle: .file)) to:\n\(destinationURL.path)")
+      }
+    }
+  }
+  
+  private func showFolderPicker() {
+    let panel = NSOpenPanel()
+    panel.message = "Select destination folder for attachments"
+    panel.prompt = "Select Folder"
+    panel.allowsMultipleSelection = false
+    panel.canChooseDirectories = true
+    panel.canChooseFiles = false
+    panel.canCreateDirectories = true
+    
+    panel.begin { response in
+      if response == .OK, let url = panel.url {
+        selectedDestinationURL = url
+        showingCopyConfirmation = true
+      }
     }
   }
 }
