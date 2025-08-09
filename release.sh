@@ -9,7 +9,7 @@ set -e  # Exit on any error
 source ./release-config.sh
 
 APP_NAME="${APP_NAME:-Detach}"
-VERSION="${APP_VERSION:-1.0.0}"
+VERSION="${APP_VERSION:-1.0.1}"
 DMG_NAME="$APP_NAME-$VERSION.dmg"
 TITLE="${RELEASE_TITLE:-$APP_NAME v$VERSION}"
 NOTES="${RELEASE_NOTES:-Release notes for $APP_NAME v$VERSION}"
@@ -48,7 +48,7 @@ fi
 # Only search if we don't have a custom path
 if [ -z "$APP_PATH" ]; then
     echo -e "${BLUE}🔍 Looking for signed $APP_NAME.app...${NC}"
-    
+
     for location in "${SEARCH_LOCATIONS[@]}"; do
         if [ -d "$location" ]; then
             APP_PATH="$location"
@@ -56,7 +56,7 @@ if [ -z "$APP_PATH" ]; then
             break
         fi
     done
-    
+
     if [ -z "$APP_PATH" ]; then
         echo -e "${RED}❌ Error: $APP_NAME.app not found in common locations${NC}"
         echo -e "${YELLOW}Searched in:${NC}"
