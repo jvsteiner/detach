@@ -8,10 +8,24 @@ struct ContentView: View {
   @State private var selectedAttachments: Set<AttachmentItem> = []
   @State private var showingDeleteConfirmation = false
   
+  // Custom filter inputs
+  @State private var customTimeframeValue: String = "3"
+  @State private var customTimeframeUnit: TimeUnit = .months
+  @State private var customFileSize: String = "7.5"
+  @State private var customFileSizeUnit: FileSizeUnit = .mb
+  
   private var filteredAttachments: [AttachmentItem] {
-    scanner.filteredAttachments(
+    // Calculate custom values
+    let customDays = selectedTimeframe == .custom ? 
+      (Int(customTimeframeValue) ?? 0) * customTimeframeUnit.dayMultiplier : nil
+    let customSizeBytes = selectedFileSize == .custom ? 
+      (Double(customFileSize) ?? 0) * Double(customFileSizeUnit.multiplier) : nil
+    
+    return scanner.filteredAttachments(
       timeframe: selectedTimeframe,
+      customTimeframeDays: customDays,
       fileSize: selectedFileSize,
+      customFileSizeBytes: Int64(customSizeBytes ?? 0),
       fileType: selectedFileType
     )
   }
@@ -65,28 +79,72 @@ struct ContentView: View {
       if !scanner.attachments.isEmpty {
         GroupBox("Filters") {
           VStack(spacing: 15) {
-            HStack {
-              Label("Older than:", systemImage: "calendar")
-                .frame(width: 100, alignment: .leading)
+            VStack(alignment: .leading, spacing: 5) {
+              HStack {
+                Label("Older than:", systemImage: "calendar")
+                  .frame(width: 100, alignment: .leading)
+                
+                Picker("Timeframe", selection: $selectedTimeframe) {
+                  ForEach(FilterTimeframe.allCases, id: \.self) { timeframe in
+                    Text(timeframe.rawValue).tag(timeframe)
+                  }
+                }
+                .pickerStyle(.menu)
+              }
               
-              Picker("Timeframe", selection: $selectedTimeframe) {
-                ForEach(FilterTimeframe.allCases, id: \.self) { timeframe in
-                  Text(timeframe.rawValue).tag(timeframe)
+              // Custom timeframe input
+              if selectedTimeframe == .custom {
+                HStack {
+                  Spacer().frame(width: 100)
+                  TextField("Value", text: $customTimeframeValue)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 80)
+                  
+                  Picker("Unit", selection: $customTimeframeUnit) {
+                    ForEach(TimeUnit.allCases, id: \.self) { unit in
+                      Text(unit.rawValue).tag(unit)
+                    }
+                  }
+                  .pickerStyle(.menu)
+                  .frame(width: 90)
+                  
+                  Spacer()
                 }
               }
-              .pickerStyle(.menu)
             }
             
-            HStack {
-              Label("Larger than:", systemImage: "internaldrive")
-                .frame(width: 100, alignment: .leading)
+            VStack(alignment: .leading, spacing: 5) {
+              HStack {
+                Label("Larger than:", systemImage: "internaldrive")
+                  .frame(width: 100, alignment: .leading)
+                
+                Picker("File Size", selection: $selectedFileSize) {
+                  ForEach(FilterFileSize.allCases, id: \.self) { size in
+                    Text(size.rawValue).tag(size)
+                  }
+                }
+                .pickerStyle(.menu)
+              }
               
-              Picker("File Size", selection: $selectedFileSize) {
-                ForEach(FilterFileSize.allCases, id: \.self) { size in
-                  Text(size.rawValue).tag(size)
+              // Custom file size input
+              if selectedFileSize == .custom {
+                HStack {
+                  Spacer().frame(width: 100)
+                  TextField("Size", text: $customFileSize)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 80)
+                  
+                  Picker("Unit", selection: $customFileSizeUnit) {
+                    ForEach(FileSizeUnit.allCases, id: \.self) { unit in
+                      Text(unit.rawValue).tag(unit)
+                    }
+                  }
+                  .pickerStyle(.menu)
+                  .frame(width: 90)
+                  
+                  Spacer()
                 }
               }
-              .pickerStyle(.menu)
             }
             
             HStack {
@@ -251,6 +309,34 @@ struct AttachmentRowView: View {
     .contentShape(Rectangle())
     .onTapGesture {
       onSelectionChanged(!isSelected)
+    }
+  }
+}
+
+enum FileSizeUnit: String, CaseIterable {
+  case kb = "KB"
+  case mb = "MB"
+  case gb = "GB"
+  
+  var multiplier: Int64 {
+    switch self {
+    case .kb: return 1_000
+    case .mb: return 1_000_000
+    case .gb: return 1_000_000_000
+    }
+  }
+}
+
+enum TimeUnit: String, CaseIterable {
+  case days = "Days"
+  case months = "Months"
+  case years = "Years"
+  
+  var dayMultiplier: Int {
+    switch self {
+    case .days: return 1
+    case .months: return 30
+    case .years: return 365
     }
   }
 }

@@ -121,3 +121,6 @@ create_project.sh
 
 
 .claude/
+
+*.dmg
+Detach.app*

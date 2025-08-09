@@ -148,12 +148,21 @@ class AttachmentScanner: ObservableObject {
   
   func filteredAttachments(
     timeframe: FilterTimeframe,
+    customTimeframeDays: Int? = nil,
     fileSize: FilterFileSize,
+    customFileSizeBytes: Int64 = 0,
     fileType: FileTypeCategory
   ) -> [AttachmentItem] {
     return attachments.filter { attachment in
       // Filter by timeframe
-      if let days = timeframe.days {
+      let daysToCheck: Int?
+      if timeframe == .custom {
+        daysToCheck = customTimeframeDays
+      } else {
+        daysToCheck = timeframe.days
+      }
+      
+      if let days = daysToCheck {
         let cutoffDate = Calendar.current.date(byAdding: .day, value: -days, to: Date()) ?? Date.distantPast
         if attachment.dateModified > cutoffDate {
           return false
@@ -161,8 +170,15 @@ class AttachmentScanner: ObservableObject {
       }
       
       // Filter by file size
-      if let minSize = fileSize.bytes {
-        if attachment.size < minSize {
+      let minSize: Int64?
+      if fileSize == .custom {
+        minSize = customFileSizeBytes > 0 ? customFileSizeBytes : nil
+      } else {
+        minSize = fileSize.bytes
+      }
+      
+      if let minSizeValue = minSize {
+        if attachment.size < minSizeValue {
           return false
         }
       }

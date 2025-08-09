@@ -67,6 +67,7 @@ enum FilterTimeframe: String, CaseIterable {
   case threeMonths = "3 Months"
   case sixMonths = "6 Months"
   case year = "1 Year"
+  case custom = "Custom"
   
   var days: Int? {
     switch self {
@@ -76,6 +77,7 @@ enum FilterTimeframe: String, CaseIterable {
     case .threeMonths: return 90
     case .sixMonths: return 180
     case .year: return 365
+    case .custom: return nil // Will be handled separately
     }
   }
 }
@@ -86,6 +88,7 @@ enum FilterFileSize: String, CaseIterable {
   case medium = "10 MB+"
   case large = "50 MB+"
   case xlarge = "100 MB+"
+  case custom = "Custom"
   
   var bytes: Int64? {
     switch self {
@@ -94,6 +97,7 @@ enum FilterFileSize: String, CaseIterable {
     case .medium: return 10_000_000
     case .large: return 50_000_000
     case .xlarge: return 100_000_000
+    case .custom: return nil // Will be handled separately
     }
   }
 }
