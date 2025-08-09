@@ -1,0 +1,93 @@
+2025-08-09 15:46:28 +0000 [MT] Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x1370d0650; archive(resolved)="<IDEArchive: 0x600001284d20>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team(resolved)="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	Chain (12, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x1370d0650; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionProcessingPipelineContext: 0x13706c100; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionContext: 0x13706f540; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionContext: 0x137234230; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionContext: 0x13712ad80; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionContext: 0x13712de70; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionContext: 0x13712d040; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionContext: 0x13712a4c0; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionContext: 0x13712ab70; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="<IDEProvisioningBasicTeam: 0x6000038b7660; teamID='X3U2KY97YV', teamName='(null)'>">
+	<IDEDistributionContext: 0x137129b40; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="(null)">
+	<IDEDistributionContext: 0x137118b00; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="<IDEDistributionMethodDeveloperID: 0x600003bb1700>", team="(null)">
+	<IDEDistributionContext: 0x135e120e0; archive = "<IDEArchive: 0x600001284d20>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x1370d0650>
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionCreateDestRootStep
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionCopyItemStep
+2025-08-09 15:46:28 +0000 [MT] Running /usr/bin/ditto '-V' '/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app' '/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app'
+2025-08-09 15:46:28 +0000  >>> Copying /Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app 
+2025-08-09 15:46:28 +0000  copying file ./Contents/_CodeSignature/CodeResources ... 
+2025-08-09 15:46:28 +0000  2200 bytes for ./Contents/_CodeSignature/CodeResources
+2025-08-09 15:46:28 +0000  copying file ./Contents/MacOS/Detach ... 
+2025-08-09 15:46:28 +0000  511840 bytes for ./Contents/MacOS/Detach
+2025-08-09 15:46:28 +0000  copying file ./Contents/Info.plist ... 
+2025-08-09 15:46:28 +0000  1759 bytes for ./Contents/Info.plist
+2025-08-09 15:46:28 +0000  copying file ./Contents/PkgInfo ... 
+2025-08-09 15:46:28 +0000  8 bytes for ./Contents/PkgInfo
+2025-08-09 15:46:28 +0000 [MT] /usr/bin/ditto exited with 0
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionEmbedProfileStep
+2025-08-09 15:46:28 +0000 [MT] Skipping profile for item: <IDEDistributionItem: 0x600001d921c0; bundleID='com.detachapp.detach', path='<DVTFilePath:0x600001d97cc0:'/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600001d6e580; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000ce8a80; name='Apple Distribution: Jamie Steiner (X3U2KY97YV)', hash='089EC23C6BC5FF40049E6FDA8532F32CA743D22B', serialNumber='754FE28E256D8F906058710366AF9BAC', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2024-12-22 19:25:17 +0000''>', entitlements='{
+}', teamID='X3U2KY97YV', identifier='com.detachapp.detach', executablePath='<DVTFilePath:0x600001db62e0:'/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app/Contents/MacOS/Detach'>', hardenedRuntime='1'>'>
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionInfoPlistStep
+2025-08-09 15:46:28 +0000 [MT] Skipping step: IDEDistributionInfoPlistStep because it said so
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionAppThinningPlistStep
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionSymbolsStep
+2025-08-09 15:46:28 +0000 [MT] Skipping step: IDEDistributionSymbolsStep because it said so
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionAppThinningStep
+2025-08-09 15:46:28 +0000 [MT] Skipping step: IDEDistributionAppThinningStep because it said so
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionArchThinningStep
+2025-08-09 15:46:28 +0000 [MT] Item /Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app doesn't have the entitlement com.apple.developer.web-browser-engine.host enabled, returning ["arm64e"]
+2025-08-09 15:46:28 +0000 [MT] Archs to thin for item /Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app are ["arm64e"]
+2025-08-09 15:46:28 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app/Contents/MacOS/Detach' '-verify_arch' 'arm64e'
+2025-08-09 15:46:28 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-08-09 15:46:28 +0000 [MT] Skipping architecture thinning for item "Detach" because arch "arm64e" wasn't found
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionODRStep
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionStripXattrsStep
+2025-08-09 15:46:28 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionCodesignStep
+2025-08-09 15:46:28 +0000 [MT] Entitlements for <IDEDistributionItem: 0x600001d921c0; bundleID='com.detachapp.detach', path='<DVTFilePath:0x600001d97cc0:'/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600001d6e580; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000ccd8c0; name='Apple Distribution: Jamie Steiner (X3U2KY97YV)', hash='089EC23C6BC5FF40049E6FDA8532F32CA743D22B', serialNumber='754FE28E256D8F906058710366AF9BAC', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2024-12-22 19:25:17 +0000''>', entitlements='{
+}', teamID='X3U2KY97YV', identifier='com.detachapp.detach', executablePath='<DVTFilePath:0x600001db62e0:'/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app/Contents/MacOS/Detach'>', hardenedRuntime='1'>'>: {
+}
+2025-08-09 15:46:28 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-08-09 15:46:28 +0000 [MT] Entitlements for <IDEDistributionItem: 0x600001d921c0; bundleID='com.detachapp.detach', path='<DVTFilePath:0x600001d97cc0:'/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600001d6e580; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000ccd8c0; name='Apple Distribution: Jamie Steiner (X3U2KY97YV)', hash='089EC23C6BC5FF40049E6FDA8532F32CA743D22B', serialNumber='754FE28E256D8F906058710366AF9BAC', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2024-12-22 19:25:17 +0000''>', entitlements='{
+}', teamID='X3U2KY97YV', identifier='com.detachapp.detach', executablePath='<DVTFilePath:0x600001db62e0:'/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app/Contents/MacOS/Detach'>', hardenedRuntime='1'>'> are: {
+}
+2025-08-09 15:46:28 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x600001d921c0; bundleID='com.detachapp.detach', path='<DVTFilePath:0x600001d97cc0:'/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x600001d6e580; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x600000ce8a80; name='Apple Distribution: Jamie Steiner (X3U2KY97YV)', hash='089EC23C6BC5FF40049E6FDA8532F32CA743D22B', serialNumber='754FE28E256D8F906058710366AF9BAC', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2024-12-22 19:25:17 +0000''>', entitlements='{
+}', teamID='X3U2KY97YV', identifier='com.detachapp.detach', executablePath='<DVTFilePath:0x600001db62e0:'/Users/jamie/Code/detach/Detach.xcarchive/Products/Applications/Detach.app/Contents/MacOS/Detach'>', hardenedRuntime='1'>'> to: /var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/entitlements~~~j4zllv
+2025-08-09 15:46:28 +0000 [MT] invoking codesign: <NSConcreteTask: 0x6000019f93b0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    089EC23C6BC5FF40049E6FDA8532F32CA743D22B,
+    "--entitlements",
+    "/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/entitlements~~~j4zllv",
+    "--preserve-metadata=identifier,flags,runtime",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app"
+)'>
+2025-08-09 15:46:28 +0000 [MT] codesign output: /var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app: replacing existing signature
+/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app: signed app bundle with Mach-O universal (x86_64 arm64) [com.detachapp.detach]
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionZipODRItemStep
+2025-08-09 15:46:28 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionSkipPackagingStep
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionAppStoreInformationStep
+2025-08-09 15:46:28 +0000 [MT] Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionGenerateProcessedDistributionItems
+2025-08-09 15:46:28 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x600001dbbd20:'/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app'>
+2025-08-09 15:46:28 +0000 [MT] [OPTIONAL] Didn't find embedded provisioning profile for <DVTFilePath:0x600001dbbd20:'/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app'>: Error Domain=NSCocoaErrorDomain Code=4 "No file at <DVTFilePath:0x60000125f870:'/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app/Contents/embedded.provisionprofile'>" UserInfo={NSLocalizedDescription=No file at <DVTFilePath:0x60000125f870:'/var/folders/k5/w97qjn5j2g7006grfjrs7xtc0000gq/T/XcodeDistPipeline.~~~x878j4/Root/Applications/Detach.app/Contents/embedded.provisionprofile'>}
+2025-08-09 15:46:28 +0000 [MT] Processing step: IDEDistributionCreateManifestStep
+2025-08-09 15:46:28 +0000 [MT] Skipping step: IDEDistributionCreateManifestStep because it said so
