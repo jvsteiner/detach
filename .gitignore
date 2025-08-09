@@ -124,3 +124,4 @@ create_project.sh
 
 *.dmg
 Detach.app*
+*.zip

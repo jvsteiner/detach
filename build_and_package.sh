@@ -84,7 +84,7 @@ chmod +x "$APP_BUNDLE/Contents/MacOS/Detach"
 
 # Sign the application
 echo "🔐 Signing application with Developer ID..."
-codesign --deep --force --options runtime --sign "$DEVELOPER_ID" "$APP_BUNDLE"
+codesign --deep --force --options runtime --timestamp --entitlements Detach.entitlements --sign "$DEVELOPER_ID" "$APP_BUNDLE"
 
 # Verify signing
 echo "✅ Verifying code signature..."
@@ -121,15 +121,25 @@ rm "$DMG_TEMP"
 
 # Sign the DMG
 echo "🔐 Signing DMG installer..."
-codesign --sign "$DEVELOPER_ID" "$DMG_NAME"
+codesign --timestamp --sign "$DEVELOPER_ID" "$DMG_NAME"
 
-# Notarization (optional - requires app-specific password)
-echo ""
-echo "📋 To notarize for distribution (optional):"
-echo "1. Create app-specific password at appleid.apple.com"
-echo "2. Store in keychain: xcrun notarytool store-credentials --team-id $TEAM_ID"
-echo "3. Run: xcrun notarytool submit '$DMG_NAME' --keychain-profile 'notarytool-password' --wait"
-echo "4. Staple: xcrun stapler staple '$DMG_NAME'"
+# Notarization (automatic if credentials are set up)
+echo "🍎 Attempting notarization..."
+if xcrun notarytool submit "$DMG_NAME" --keychain-profile "notarytool-password" --wait 2>/dev/null; then
+  echo "✅ Notarization successful! Stapling ticket..."
+  xcrun stapler staple "$DMG_NAME"
+  echo "✅ DMG is now notarized and ready for distribution!"
+else
+  echo "⚠️  Notarization failed or not configured. DMG is signed but not notarized."
+  echo ""
+  echo "📋 To enable notarization for future builds:"
+  echo "1. Create app-specific password at appleid.apple.com"
+  echo "2. Run: xcrun notarytool store-credentials --team-id $TEAM_ID"
+  echo "3. When prompted, use profile name: notarytool-password"
+  echo "4. Rebuild with: ./build_and_package.sh"
+  echo ""
+  echo "🔧 Users can still install by right-clicking DMG > Open"
+fi
 
 echo "✅ Build complete!"
 echo "📍 App bundle: $APP_BUNDLE"
